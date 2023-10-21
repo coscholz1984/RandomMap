@@ -4,5 +4,6 @@ Random procedural tile based maps generation. Written in Octave 8.3.0
 HowTo:
 1. Run CreateFundamentalTextures.m
 2. Run MapGenerator.m
+   
 The result will be displayed as a figure. You can also save the result as an image using imwrite(map_image,'map.png');
 ![alt text](https://github.com/coscholz1984/RandomMap/blob/main/map.png?raw=true)
