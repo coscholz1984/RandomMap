@@ -8,3 +8,5 @@ HowTo:
    
 The result will be displayed as a figure. You can also save the result as an image using imwrite(map_image,'map.png');
 ![alt text](https://github.com/coscholz1984/RandomMap/blob/main/map.png?raw=true)
+
+ToDo: Adding assets randomly to the map.
