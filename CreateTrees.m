@@ -1,6 +1,6 @@
 function vTMix = CreateTrees(vT1,vT2,img,alpha)
 
-tPath = 'C:\Users\cnceo\Documents\Games\TextureTransition\';
+tPath = '.\';
 
 if (nargin < 2)
 tT1 = 'Ptrn4.png'; % this will be the top texture (land)
@@ -9,7 +9,7 @@ vT1 = imread([tPath,tT1]);
 vT2 = imread([tPath,tT2]);
 alpha = 3.0; % this coefficient is the exponent that sharpens the gradient (higher means a sharper transition)
 for iMap = 1:12
-  Tc{iMap} = ['IsleMap-',num2str(iMap,'%01d'),'.png'];
+  Tc{iMap} = ['./IsleMaps/IsleMap-',num2str(iMap,'%01d'),'.png'];
 end
 img = mat2gray(imread([tPath, Tc{randi(12)}]));
 end
@@ -17,7 +17,7 @@ end
 if (nargin == 2)
   alpha = 3.0; % this coefficient is the exponent that sharpens the gradient (higher means a sharper transition)
   for iMap = 1:12
-    Tc{iMap} = ['IsleMap-',num2str(iMap,'%01d'),'.png'];
+    Tc{iMap} = ['./IsleMaps/IsleMap-',num2str(iMap,'%01d'),'.png'];
   end
   img = mat2gray(imread([tPath, Tc{randi(12)}]));
 end
