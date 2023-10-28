@@ -30,6 +30,8 @@ for iY = 1:(size(imBW,1)-6)
   end
 end
 
+[vHut,vMap,vAlpha] = imread('./Assets/Hut2.png');
+
 %figure;imagesc(imBW);axis image;
 
 % generate high ground
@@ -105,6 +107,10 @@ for iH = 0:(size(map1_,2)-1)
     if map3_(iW+1,iH+1) > 1
       if (iMap3 == 16) && (rand < 0.05)
         map_image(iW*32+1:(iW+1)*32,iH*32+1:(iH+1)*32,:) = CreateTrees(imread('.\Ptrn4.png'),vTGras{iMap3});
+      elseif (rand < 0.01)
+        % add a hut to the land
+        vMerged = MergeOverlayBackgroundTexture(vTGras{iMap3}, vHut, vAlpha);
+        map_image(iW*32+1:(iW+1)*32,iH*32+1:(iH+1)*32,:) = vMerged;
       else
         map_image(iW*32+1:(iW+1)*32,iH*32+1:(iH+1)*32,:) = vTGras{iMap3};%;map(iW+1,iH+1)*ones(32,32);
       end
@@ -138,5 +144,5 @@ end
 %figure;image(map_image_water); axis image;
 %figure;image(map_image_gras); axis image;
 figure;image(map_image); axis image;
-%imwrite(map_image_land,'test.png');
+%imwrite(map_image,'map.png');
 
