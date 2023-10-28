@@ -144,5 +144,5 @@ end
 %figure;image(map_image_water); axis image;
 %figure;image(map_image_gras); axis image;
 figure;image(map_image); axis image;
-%imwrite(map_image,'map.png');
+%imwrite(map_image,'tilemap.png');
 
