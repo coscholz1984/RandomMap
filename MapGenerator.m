@@ -99,7 +99,7 @@ for iH = 0:(size(map1_,2)-1)
     %map_image(iW*32+1:(iW+1)*32,iH*32+1:(iH+1)*32,:) = vTLand{iMap2};%;map(iW+1,iH+1)*ones(32,32);
     if (map1_(iW+1,iH+1) < 16)
       if (iMap1 == 1) && (rand < 0.05)
-        map_image(iW*32+1:(iW+1)*32,iH*32+1:(iH+1)*32,:) = CreateIsle(imread('.\Ptrn3.png'),imread('.\Ptrn1.png'));
+        map_image(iW*32+1:(iW+1)*32,iH*32+1:(iH+1)*32,:) = CreateIsle(imread('.\Ptrn3.png'),imread('.\Ptrn1.png')); % these are the actual isles
       else
         map_image(iW*32+1:(iW+1)*32,iH*32+1:(iH+1)*32,:) = vTWater{iMap1};%;map(iW+1,iH+1)*ones(32,32);
       end
@@ -139,6 +139,25 @@ if ~isempty(rIndex)
     end
   end
 end
+
+% add chemical plant asset if possible
+cWIndex = [];
+cHIndex = [];
+for iW = 0:2:(size(map1_,1)-4)
+  for iH = 0:2:(size(map1_,2)-3)
+    if unique(map1_((iW+1):(iW+4),(iH+1):(iH+3))) == 1
+      cWIndex = [cWIndex, iW];
+      cHIndex = [cHIndex, iH];
+    end
+  end
+end
+
+%randi(length(cWIndex))
+rindex = randi(length(cWIndex));
+vBackground = map_image(cWIndex(rindex)*32+1:(cWIndex(rindex)+4)*32,cHIndex(rindex)*32+1:(cHIndex(rindex)+3)*32,:);
+[vChemPlant,vMap,vAlphaPlant] = imread('./Assets/ChemicalPlant.png');
+map_image(cWIndex(rindex)*32+1:(cWIndex(rindex)+4)*32,cHIndex(rindex)*32+1:(cHIndex(rindex)+3)*32,:) = MergeOverlayBackgroundTexture(vBackground, vChemPlant, vAlphaPlant);
+
 
 %figure;image(map_image_land); axis image;
 %figure;image(map_image_water); axis image;
